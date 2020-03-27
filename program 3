@@ -1,0 +1,69 @@
+algorithm:
+Step 1 : Ask the user to enter two fractional values where there are two numerators and two denominators. One numerator and one denominator for first fraction and one numerator and one denominator for second fraction.
+Step 2 : Find a common denominator  by finding the Least Common Multiple(LCM) of both denominator values.
+Step 3 : Now change the fractions according to the LCM obtained and then denominators of both fractions will become same.
+Step 4 : Now add both fractions and store the resultant fractional values.   
+Step 5 : After adding both fractions we need to simplify it and for simplification purpose we need to divide both numerator and denominator by there Highest Common Factor(HCF) and after this you will get your simplified fraction
+code:
+import java.util.Scanner;
+public class add_two_fractions
+{
+	public static void main(String[] args)
+	{
+		//scanner class declaration
+		Scanner sc = new Scanner(System.in);
+		//input from the user		
+		System.out.print("Enter numerator for first fraction : ");		
+		int num1 = sc.nextInt();
+		System.out.print("Enter denominator for first fraction : ");		
+		int den1 = sc.nextInt();
+		System.out.print("Enter numerator for second fraction : ");		
+		int num2 = sc.nextInt();
+		System.out.print("Enter denominator for second fraction : ");		
+		int den2 = sc.nextInt();
+		int num, den, x;
+		System.out.print("("+num1+" / "+den1+") + ("+num2+" / "+den2+") = ");
+		//logic for calculating sum of two fractions
+		if(den1 == den2)
+		{
+			num = num1 + num2 ;
+			den = den1 ;
+		}
+		else{
+			num = (num1*den2) + (num2*den1);
+			den = den1 * den2;
+		}
+		if(num > den)
+			x = num;
+		else
+			x = den;
+		for(int i = 1 ; i <= x ; i++)
+		{
+			if(num%i == 0 && den%i == 0)
+			{
+				num = num/i;
+				den = den/i;
+			}
+		}
+		//logic for getting simplified fraction
+		int n = 1;
+		int p = num;
+		int q = den;
+		if( num != den)
+		{
+			while(n != 0)
+			{
+				//storing remainder
+				n = num % den;			
+				if(n != 0)
+				{
+					num = den;
+					den = n;
+				}
+			}			
+		}
+		System.out.println("("+p/den+" / "+q/den+")");
+		//closing scanner class(not compulsory, but good practice)
+		sc.close();									
+	}
+}
